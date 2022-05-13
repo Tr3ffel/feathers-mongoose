@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import feathers from '@feathersjs/feathers';
+import { feathers } from '@feathersjs/feathers';
 import { default as mongoose, hooks, transactionManager } from 'feathers-mongoose';
 
 const MessageSchema = new Schema({

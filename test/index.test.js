@@ -97,23 +97,23 @@ const app = feathers()
     Model: User,
     lean: false,
     multi: true,
-    whitelist: ['$populate']
+    operators: ['$populate']
   }))
   .use('/pets', adapter({
     Model: Pet,
     lean: false,
     multi: true,
-    whitelist: ['$populate']
+    operators: ['$populate']
   }))
   .use('/people2', adapter({
     Model: User,
     multi: true,
-    whitelist: ['$populate']
+    operators: ['$populate']
   }))
   .use('/pets2', adapter({
     Model: Pet,
     multi: true,
-    whitelist: ['$populate']
+    operators: ['$populate']
   }))
   .use('/pets3', adapter({
     Model: Pet,
@@ -126,7 +126,7 @@ const app = feathers()
     Model: Post,
     discriminators: [TextPost],
     multi: true,
-    whitelist: ['$populate']
+    operators: ['$populate']
   }));
 const people = app.service('people');
 const pets = app.service('pets');
@@ -166,8 +166,8 @@ describe('Feathers Mongoose Service', () => {
       expect(people.id).to.equal('_id');
     });
 
-    it('merges whitelist parameters (#347)', () => {
-      expect(people.options.whitelist).to.deep.equal(['$populate', '$and']);
+    it('merges operators parameters (#347)', () => {
+      expect(people.options.operators).to.deep.equal(['$populate', '$and']);
     });
 
     it('when missing the overwrite option sets the default to be true', () => {
