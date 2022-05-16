@@ -26,7 +26,8 @@ export interface MongooseAdapterParams<Q = AdapterQuery> extends AdapterParams<Q
   mongoose?: {
     [key: string]: any;
     session?: ClientSession;
-  }
+  },
+  [key: string]: any;
 }
 
 export class MongooseDbAdapter <T, D = Partial<T>, P extends MongooseAdapterParams = MongooseAdapterParams> extends AdapterBase<T, D, P, MongooseServiceOptions> {
