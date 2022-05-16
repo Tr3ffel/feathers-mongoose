@@ -20,13 +20,14 @@ export interface MongooseServiceOptions<T extends Document = any> extends Adapte
   useEstimatedDocumentCount?: boolean;
   queryModifier?: (query: Query<any, any>, params: Params) => void;
   queryModifierKey?: string;
+}
+
+export interface MongooseAdapterParams<Q = AdapterQuery> extends AdapterParams<Q, Partial<MongooseServiceOptions>> {
   mongoose?: {
     [key: string]: any;
     session?: ClientSession;
   }
 }
-
-export interface MongooseAdapterParams<Q = AdapterQuery> extends AdapterParams<Q, Partial<MongooseServiceOptions>> {}
 
 export class MongooseDbAdapter <T, D = Partial<T>, P extends MongooseAdapterParams = MongooseAdapterParams> extends AdapterBase<T, D, P, MongooseServiceOptions> {
   async $get(id: Id, params: P = {} as P): Promise<T>;
