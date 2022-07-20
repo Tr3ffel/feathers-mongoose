@@ -1,7 +1,7 @@
 // TypeScript Version: 4.0
 import { Params, Paginated, Id, NullableId, Hook, ServiceMethods } from '@feathersjs/feathers';
 import { InternalServiceMethods, AdapterParams, AdapterBase, AdapterServiceOptions, PaginationOptions, AdapterQuery } from '@feathersjs/adapter-commons';
-import { Model, Document, Query, ClientSession } from 'mongoose';
+import { Model, Document, Query, ClientSession, PipelineStage } from 'mongoose';
 
 export namespace hooks {
   function toObject(options?: any, dataField?: string): Hook;
@@ -26,6 +26,7 @@ export interface MongooseAdapterParams<Q = AdapterQuery> extends AdapterParams<Q
   mongoose?: {
     [key: string]: any;
     session?: ClientSession;
+    aggregation?: PipelineStage[];
   },
   [key: string]: any;
 }
